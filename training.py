@@ -140,24 +140,4 @@ history = model.fit_generator(
     epochs=5,
     verbose=2)
     
-model = load_model("inceptionv3_fine_tuned.h5")
 
-#img_path = 'base_dir/val_dir/Tuberculosis/CHNCXR_0337_1.png'
-img_path = '/home/pproger/Desktop/fluorography detection of a disease using a neural network/val_dir/Normal/CHNCXR_0171_0.png'
-#img_path = 'base_dir/val_dir/Tuberculosis/MCUCXR_0367_1.png'
-img = image.load_img(img_path, target_size=(image_size, image_size))
-plt.imshow(img)
-plt.show()
-
-x = image.img_to_array(img)
-x /= 255
-x = np.expand_dims(x, axis=0)
-
-prediction = model.predict(x)
-
-print(prediction)
-
-if prediction[[0]] < 0.5:
-    print('Normal')
-else:
-    print('Tuberculosis')
